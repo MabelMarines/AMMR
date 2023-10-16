@@ -1,0 +1,13 @@
+// Uso de fuente (source)
+voronoi(10, 1)
+  // Aplicación de función de geometría (rotate)
+  .rotate(0.2)
+  // Aplicación de función de pixelación (pixelate)
+  .pixelate(30, 30)
+  // Aplicación de función de color
+ .color(
+    () => Math.random()   )
+  // Aplicación de función de fusión (saturate)
+  .saturate(2)
+  // Visualización en pantalla
+  .out()
