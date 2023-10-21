@@ -1,0 +1,23 @@
+// Define un SynthDef para el sintetizador \sine
+(
+SynthDef(\sine, {
+    arg freq = 440, dur = 0.5, amp = 0.5;
+    var sound;
+    sound = SinOsc.ar(freq, 0, amp);
+    Out.ar(0, sound!2);
+}).add;
+)
+
+// Crea una Pdef para controlar el sintetizador \sine
+(
+Pdef(\sine_pattern, Pbind(
+    \instrument, \sine,   // Sintetizador a utilizar
+    \dur, Pseq([0.25, 0.5, 0.75, 1], inf),           // Duración de las notas
+    \midinote, Pseq([60, 62, 64, 65, 67, 69, 71, 72], inf), // Notas a tocar
+    \amp, Pseq([0.5, 0.6, 0.7, 0.8], inf), // Volumen de las notas
+    \legato, Pseq([0.1, 0.2, 0.3, 0.4], inf)          // Legato (nota legato)
+)).play;
+)
+
+// Para detener la Pdef cuando sea necesario
+// Pdef(\sine_pattern).stop;
